@@ -7,5 +7,7 @@ jobs:
       - name: Say hi, as step
         run: echo "Hi, from a step"
         shell: bash
+      - name: Check out repository
+        uses: actions/checkout@v2
       - name: run one
         uses: ./action-one
