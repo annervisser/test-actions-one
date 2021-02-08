@@ -1,0 +1,8 @@
+name: test run one
+description: test action from subdir
+runs:
+  using: "composite"
+  steps:
+    - name: Say hi
+      run: echo "Hi"
+      shell: bash
