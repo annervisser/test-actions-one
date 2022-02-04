@@ -3,6 +3,7 @@ on: push
 jobs:
   success-job:
     runs-on: ubuntu-latest
+    if: false
     steps:
       - name: hi
         run: echo "Hi"
