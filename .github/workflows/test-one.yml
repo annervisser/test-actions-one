@@ -21,6 +21,8 @@ jobs:
            echo "${{toJSON(needs)}}"
            echo "${{toJSON(needs.actual-job)}}"
            echo "${{toJSON(needs.*.result)}}"
+           echo "${{toJSON(failure())}}"
+           echo "${{toJSON(success())}}"
 #          echo "slack ${{job.status}}"
 #          echo "${{toJSON(github)}}"
 #          echo "${{needs.actual-job.result == 'success' && 'succ' || 'fail'}}"
