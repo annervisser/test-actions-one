@@ -21,7 +21,12 @@ jobs:
            echo "${{toJSON(needs)}}"
            echo "${{toJSON(needs.actual-job)}}"
            echo "${{toJSON(needs.*.result)}}"
-           echo "${{needs.*.result}}"
+           CONCAT_RESULTS="${{join(needs.*.result,'')}}"
+           echo "$CONCAT_RESULTS"
+           FILTERED="${CONCAT_RESULTS//success/}"
+           echo "$FILTERED"
+           STATUS=$([[ -z "$FILTERED" ]] && echo "success" || echo "failure")
+           echo "$STATUS"
 #          echo "slack ${{job.status}}"
 #          echo "${{toJSON(github)}}"
 #          echo "${{needs.actual-job.result == 'success' && 'succ' || 'fail'}}"
