@@ -1,14 +1,20 @@
 name: test run one
 on: push
 jobs:
-  success-job:
+  actual-job:
     runs-on: ubuntu-latest
-    if: false
     steps:
       - name: hi
         run: echo "Hi"
       - name: fail
         run: exit 1
-      - name: slack success
+      - name: slack
         if: always()
+        run: echo "slack ${{job.status}}"
+  report-job:
+    runs-on: ubuntu-latest
+    needs: [actual-job]
+    if: failure()
+    steps:
+      - name: slack
         run: echo "slack ${{job.status}}"
