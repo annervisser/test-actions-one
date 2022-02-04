@@ -18,7 +18,10 @@ jobs:
     steps:
       - name: slack
         run: |
-          echo "slack ${{job.status}}"
-          echo "${{toJSON(github)}}"
-          echo "${{needs.actual-job.result == 'success' && 'succ' || 'fail'}}"
-          echo "gas ${{github.action_status}}"
+           echo "${{toJSON(needs)}}"
+           echo "${{toJSON(needs.actual-job)}}"
+           echo "${{toJSON(needs.*.result)}}"
+#          echo "slack ${{job.status}}"
+#          echo "${{toJSON(github)}}"
+#          echo "${{needs.actual-job.result == 'success' && 'succ' || 'fail'}}"
+#          echo "gas ${{github.action_status}}"
