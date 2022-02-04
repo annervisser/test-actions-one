@@ -20,5 +20,5 @@ jobs:
         run: |
           echo "slack ${{job.status}}"
           echo "${{toJSON(needs)}}"
-          echo "${{needs.actual-job.result == 'success' && 'succ' || 'fail'}}"
+          echo "${{needs[0].result == 'success' && 'succ' || 'fail'}}"
           echo "gas ${{github.action_status}}"
