@@ -19,7 +19,7 @@ jobs:
       - name: slack
         run: |
            STATUSES="${{join(needs.*.result,'')}}" # Combines all results in one long string
-           echo "statuses: $CONCAT_RESULTS"
+           echo "statuses: $STATUSES"
            FILTERED="${STATUSES//success/}" # Removes all success statuses
            echo "filtered: $FILTERED"
            STATUS=$([[ -z "$FILTERED" ]] && echo "success" || echo "failure") # if not empty, its a failure
