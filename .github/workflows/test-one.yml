@@ -17,4 +17,6 @@ jobs:
     if: failure()
     steps:
       - name: slack
-        run: echo "slack ${{job.status}}"
+        run: |
+          echo "slack ${{job.status}}"
+          echo "${{needs}}"
