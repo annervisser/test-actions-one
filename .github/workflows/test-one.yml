@@ -7,7 +7,7 @@ jobs:
       - name: hi
         run: echo "Hi"
       - name: fail
-        run: exit 0
+        run: exit 1
       - name: slack
         if: always()
         run: echo "slack ${{job.status}}"
@@ -18,15 +18,12 @@ jobs:
     steps:
       - name: slack
         run: |
-           echo "${{toJSON(needs)}}"
-           echo "${{toJSON(needs.actual-job)}}"
-           echo "${{toJSON(needs.*.result)}}"
-           CONCAT_RESULTS="${{join(needs.*.result,'')}}"
-           echo "$CONCAT_RESULTS"
-           FILTERED="${CONCAT_RESULTS//success/}"
-           echo "$FILTERED"
-           STATUS=$([[ -z "$FILTERED" ]] && echo "success" || echo "failure")
-           echo "$STATUS"
+           STATUSES="${{join(needs.*.result,'')}}" # Combines all results in one long string
+           echo "statuses: $CONCAT_RESULTS"
+           FILTERED="${STATUSES//success/}" # Removes all success statuses
+           echo "filtered: $FILTERED"
+           STATUS=$([[ -z "$FILTERED" ]] && echo "success" || echo "failure") # if not empty, its a failure
+           echo "status: $STATUS"
 #          echo "slack ${{job.status}}"
 #          echo "${{toJSON(github)}}"
 #          echo "${{needs.actual-job.result == 'success' && 'succ' || 'fail'}}"
