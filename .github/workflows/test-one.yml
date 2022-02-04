@@ -19,4 +19,4 @@ jobs:
       - name: slack
         run: |
           echo "slack ${{job.status}}"
-      - uses: hmarr/debug-action@v2
+          echo "${{toJSON(needs)}}"
