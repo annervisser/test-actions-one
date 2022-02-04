@@ -1,13 +1,13 @@
 name: test run one
 on: push
 jobs:
-  example-job:
+  success-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Say hi, as step
-        run: echo "Hi, from a step"
-        shell: bash
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: run one
-        uses: ./action-one
+      - name: hi
+        run: echo "Hi"
+      - name: fail
+        run: exit 1
+      - name: slack success
+        if: always()
+        run: echo "slack ${{job.status}}"
