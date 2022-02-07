@@ -18,7 +18,6 @@ jobs:
   report:
     name: workflow result
     runs-on: ubuntu-latest
-    if: always() && github.repository == 'ScientaNL/scienta'
     env:
       STATUS: ${{github.event.workflow_run.conclusion}}
     steps:
