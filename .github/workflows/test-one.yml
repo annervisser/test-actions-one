@@ -7,7 +7,7 @@ jobs:
       - name: hi
         run: echo "Hi"
       - name: fail
-        run: exit 1
+        run: exit 0
       - name: slack
         if: always()
         run: echo "slack ${{job.status}}"
