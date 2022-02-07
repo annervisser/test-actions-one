@@ -21,6 +21,9 @@ jobs:
     needs: [final-job]
     if: always()
     steps:
+      - name: failure?
+        if: failure()
+        run: echo "failure"
       - name: slack
         run: |
            STATUSES="${{join(needs.*.result,'')}}" # Combines all results in one long string
