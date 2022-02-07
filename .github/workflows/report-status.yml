@@ -1,0 +1,25 @@
+on:
+  workflow_run:
+    workflows:
+    - test run one
+    types: [completed]
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - run: echo 'The triggering workflow passed'
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo 'The triggering workflow failed'
+  report:
+    name: workflow result
+    runs-on: ubuntu-latest
+    if: always() && github.repository == 'ScientaNL/scienta'
+    env:
+      STATUS: ${{github.event.workflow_run.conclusion}}
+    steps:
+      - run: echo "$STATUS"
