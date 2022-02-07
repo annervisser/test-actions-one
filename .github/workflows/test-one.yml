@@ -32,7 +32,7 @@ jobs:
            echo "filtered: $FILTERED"
            STATUS=$([[ -z "$FILTERED" ]] && echo "success" || echo "failure") # if not empty, its a failure
            echo "status: $STATUS"
+           echo "${{toJSON(needs)}}"
 #          echo "slack ${{job.status}}"
-#          echo "${{toJSON(github)}}"
 #          echo "${{needs.actual-job.result == 'success' && 'succ' || 'fail'}}"
 #          echo "gas ${{github.action_status}}"
