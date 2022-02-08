@@ -15,7 +15,7 @@ jobs:
   report-job:
     runs-on: ubuntu-latest
     needs: [final-job]
-    if: github.action_status == 'failure' || github.action_status == 'success'
+    if: failure() || success()
     steps:
       - name: slack
         run: |
