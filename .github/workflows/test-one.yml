@@ -12,20 +12,12 @@ jobs:
     steps:
       - name: final
         run: echo "final"
-  report-job-success:
+  report-job:
     runs-on: ubuntu-latest
     needs: [final-job]
-    if: success()
+    if: github.action_status == 'failure' || github.action_status == 'success'
     steps:
       - name: slack
         run: |
-           echo "success"
-  report-job-failure:
-    runs-on: ubuntu-latest
-    needs: [final-job]
-    if: failure()
-    steps:
-      - name: slack
-        run: |
-           echo "failure"
+           echo "success ${{github.action_status}} ${{job.status}}"
            
