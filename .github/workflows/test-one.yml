@@ -4,5 +4,6 @@ jobs:
   actual-job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "[${{ runner.debug }}]"
+      - name: Set Github environment variables
+        uses: ScientaNL/github-actions-env-toolkit@main
            
