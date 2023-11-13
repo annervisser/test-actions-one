@@ -1,5 +1,7 @@
 name: test run one
-on: push
+on: 
+  - push
+  - release
 jobs:
   actual-job:
     runs-on: ubuntu-latest
