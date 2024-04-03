@@ -11,21 +11,21 @@ jobs:
     if: ${{needs.needstorun.outputs.run}}
     runs-on: ubuntu-latest
     outputs:
-      out: ${{ steps.changes.outputs.out }}
+      out: ${{ steps.step.outputs.out }}
     steps:
       - id: step
         run: echo "out=job1" >> $GITHUB_OUTPUT
   job2:
     runs-on: ubuntu-latest
     outputs:
-      out: ${{ steps.changes.outputs.out }}
+      out: ${{ steps.step.outputs.out }}
     steps:
       - id: step
         run: echo "out=job2" >> $GITHUB_OUTPUT
   job3:
     runs-on: ubuntu-latest
     outputs:
-      out: ${{ steps.changes.outputs.out }}
+      out: ${{ steps.step.outputs.out }}
     steps:
       - id: step
         run: echo "out=job3" >> $GITHUB_OUTPUT
