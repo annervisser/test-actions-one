@@ -22,6 +22,7 @@ jobs:
       - run: echo "out=job1" >> $GITHUB_OUTPUT
   combine:
     runs-on: ubuntu-latest
+    if: ${{ always() }}
     needs:
       - job1
       - job2
