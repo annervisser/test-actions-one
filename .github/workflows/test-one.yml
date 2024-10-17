@@ -2,41 +2,7 @@ name: test run one
 on:
   - push
 jobs:
-  needstorun:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "run=" >> $GITHUB_OUTPUT
   job1:
-    needs: needstorun
-    if: ${{needs.needstorun.outputs.run}}
     runs-on: ubuntu-latest
-    outputs:
-      out: ${{ steps.step.outputs.out }}
     steps:
-      - id: step
-        run: echo "out=job1" >> $GITHUB_OUTPUT
-  job2:
-    runs-on: ubuntu-latest
-    outputs:
-      out: ${{ steps.step.outputs.out }}
-    steps:
-      - id: step
-        run: echo "out=job2" >> $GITHUB_OUTPUT
-  job3:
-    runs-on: ubuntu-latest
-    outputs:
-      out: ${{ steps.step.outputs.out }}
-    steps:
-      - id: step
-        run: echo "out=job3" >> $GITHUB_OUTPUT
-  combine:
-    runs-on: ubuntu-latest
-    if: ${{ !cancelled() }}
-    needs:
-      - job1
-      - job2
-      - job3
-    steps:
-      - run: |
-          echo Combining!
-          echo "${{needs.job1.outputs.out}} ${{needs.job2.outputs.out}} ${{needs.job3.outputs.out}}"
+      - run: node --version
